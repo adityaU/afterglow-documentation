@@ -1,0 +1,16 @@
+# Summary
+
+- [Introduction](./introductions.md)
+- [Getting Started](./getting_started.md)
+  - [Installation](./installation.md)
+  - [First Database Connection](./first_database_connection.md)
+  - [Setting Up reports & Configurations](./setting_up_reports_and_configurations.md)
+- [Questions](./questions.md)
+  - [Creating Api Based questions](./creating_api_based_questions.md)
+  - [creating SQL Based questions](./creating_sql_based_questions.md)
+  - [API Actions](./api_actions.md)
+    - [Creating API Actions](./creating_api_actions.md)
+    - [Creating Forms for API Actions](./creating_forms_for_api_actions.md)
+- [Dashboards](./dashboards.md)
+  - [Creating Dashboards](./creating_dashboards.md)
+  - [Creating Dashboard Widgets](./creating_dashboard_widgets.md)

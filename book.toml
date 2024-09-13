@@ -1,0 +1,19 @@
+[book]
+authors = []
+language = "en"
+multilingual = false
+src = "src"
+
+[preprocessor]
+
+[preprocessor.catppuccin]
+assets_version = "2.2.0" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
+
+[output]
+
+
+[output.html]
+theme = "Theme"
+default-theme = "Latte"
+preferred-dark-theme = "Latte"
+additional-css = ["./theme/catppuccin.css", "./theme/catppuccin-admonish.css", "./theme/base.css"]
