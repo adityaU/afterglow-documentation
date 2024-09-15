@@ -1,46 +1,94 @@
-# Setting Up reports & Configurations
+# Setting Up Reports & Configurations in Afterglow
 
-You will need to setup reports configuration so that you are able to download reports and receive them on your email
+In Afterglow, when you download or schedule a report, the system converts the result into a .csv file and uploads it to your AWS S3 bucket (currently, only AWS is supported). After uploading, Afterglow uses your configured email server to send the report to the user's email address. Setting up these configurations ensures seamless report generation and delivery.This involves setting up both an AWS S3 bucket for storing report files and an email server for sending reports to users. Additionally, you can configure download limits and enable experimental GenAI features for query assistance.
 
-## Reports Configuration
+## Setting Up Email Server and AWS S3 Bucket
 
-Whenever you try to download or schedule a report, Afterglow first converts the result into a .csv file and upload to your AWS S3 bucket (Only AWS supported for now). After that, Afterglow uses your email server to send the report to the user’s email. We will setup both AWS S3 bucket & Email server in order for you to download reports seamlessly.
+To set up the necessary configurations, follow the steps below.
 
-### Setting up Email Server & S3 bucket
+### Accessing Reports Configuration
 
-Go to Settings (“Your Name” on Top Right -> Settings) page and click on Reports Configuration tab
+#### Navigate to Settings
 
-### Add your Email Configuration (All Mandatory fields)
+1. Click on your name on sidebar of the Afterglow interface.
+2. Select "Settings" from the dropdown menu.
 
-- Email Server
-- Email Server Port
-- Email Server Username
-- Email Server Password
-- Email Sender ID: This is the email which will appear as sender
-- Email Server Hostname
+#### Open Reports Configuration Tab
 
-#### Add your AWS Configuration
+1. In the Settings page, click on the "Reports Configuration" tab.
 
-- AWS ACCESS KEY ID
-- AWS SECRET ACCESS KEY
-- AWS REGION
-- S3 Bucket
-- Use Private Bucket: Enable this if you want to keep the S3 bucket private. You’ll have to update your s3 bucket policy yourself
-- Signed S3 Url Timeout (in sec): This is the duration for which your file is available to download
+### Configuring the Email Server
 
-### Download Limits for Reports
+In the Reports Configuration tab, locate the Email Configuration section. All fields are mandatory.
 
-You can also set the following details regarding data limit for reports:
+#### Email Server
 
-- **Can download reports:** This is found in `Reports Configuration Tab`. You can turn this off to disable downloads for this Afterglow installation. This can however, be overridden on Organization and User level
-- **Maximum number of Rows in Exports/Reports:** This is found in `Reports Configuration Tab`. Leave it empty for no limit. This can however, be overridden on Organization and User level.
-- **Maximum Number of Rows on frontend:** Go to `Frontend Configuration Tab`. It can be less than 2000 as system doesn’t allow for anything more than 2000 internally to optimise performance
+- **Hostname or IP Address:** Enter the hostname or IP address of your email server (e.g., `smtp.example.com`).
+- **Port:** Specify the port used by your email server (common ports are 25, 465, or 587).
+- **Username:** Provide the username for authenticating with your email server.
+- **Password:** Enter the password associated with the email server username.
+- **Sender ID:** Specify the email address that will appear as the sender of the reports (e.g., `reports@example.com`).
+- **Hostname (if different):** Enter the hostname for the email server if different from the Email Server field.
 
-### GenAI Configuration (Experimental)
+> **Note:** Ensure that your email server permits sending emails from the specified sender ID and that the authentication details are accurate. If using AWS SES in sandbox mode, both the sender and receiver email addresses must be verified. Sandbox mode is intended for testing purposes only. For general use, SES should be moved out of sandbox mode to avoid the need for repeated verification of receiver email addresses.
 
-You can also supercharge your query writing by using Gen AI. We send your schema details to GenAI in order to create a query using natural language. Since, queries depend a lot on internal context and your schema design, this is recommended more as a template to get a base query and then modify it accordingly.
+### Configuring AWS S3 Bucket
 
-- Add the following configuration for GenAI:
-  - Select GenAI Provider. Currently Afterglow Supports OpenAI, Claude & local models via Ollama
-  - Provider API Key
-  - Provider Model Name
+Next, configure your AWS settings in the AWS Configuration section.
+
+#### AWS Credentials
+
+- **Access Key ID:** Enter your AWS Access Key ID with permissions to upload files to the S3 bucket.
+- **Secret Access Key:** Provide the corresponding AWS Secret Access Key.
+- **Region:** Specify the AWS region where your S3 bucket is located (e.g., `us-west-2`).
+
+#### S3 Bucket Settings
+
+- **Bucket Name:** Enter the name of the S3 bucket where reports will be stored.
+- **Private Bucket:** Toggle this option ON if you want the S3 bucket to be private.
+
+```admonish note
+  If enabled, you must update your S3 bucket policy to allow Afterglow to access it.
+```
+
+- **Signed S3 URL Timeout (in sec):** Set the duration (in seconds) for which the download link to the report will remain valid. Example: Setting it to 3600 makes the link valid for one hour.
+
+```admonish important
+Ensure that the AWS credentials provided have the necessary permissions to upload files to the S3 bucket and that the bucket policies are correctly configured, especially if using a private bucket.
+```
+
+---
+
+## Managing Download Limits for Reports
+
+Afterglow allows you to control the download capabilities and data limits for reports.
+
+- **Can Download Reports:** Found in the Reports Configuration tab. Toggle this option to ON or OFF to enable or disable report downloads for this Afterglow installation.
+  > **Note:** This setting can be overridden at the Organization and User levels.
+- **Maximum Number of Rows in Exports/Reports:** Also in the Reports Configuration tab. Set a limit on the number of rows that can be included in a report. Leave this field empty for no limit.
+  > **Note:** This setting can also be overridden at the Organization and User levels.
+- **Maximum Number of Rows on Frontend:** Navigate to the Frontend Configuration tab. Set the maximum number of rows that can be displayed on the frontend.
+  > **Note:** The system does not allow more than 2,000 rows to optimize performance.
+
+---
+
+## Enabling GenAI Configuration (Experimental)
+
+Afterglow offers an experimental GenAI feature to assist with query writing using natural language processing.
+
+```admonish caution
+This feature sends your schema details to the GenAI provider. Use it as a template to generate base queries and modify them as needed.
+```
+
+- **Select GenAI Provider:** Choose from the supported providers:
+
+  - **OpenAI**
+  - **Claude**
+  - **Local models via Ollama**
+
+- **Provider API Key:** Enter the API key for the selected GenAI provider.
+
+- **Provider Model Name:** Specify the model name you wish to use (e.g., `gpt-4o` for OpenAI).
+- **API URL**: Enter the API endpoint URL for the GenAI provider. Leave default if using the standard endpoint.
+- **Users can override GenAI Settings:** Toggle this option ON if you want users to be able to override the OpenAI key at the query level.
+  > **Note:** Users can override the GenAI Settings Toggle can be enabled at the Organization level.
