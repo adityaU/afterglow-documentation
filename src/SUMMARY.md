@@ -14,3 +14,6 @@
 - [Dashboards](./dashboards.md)
   - [Creating Dashboards](./creating_dashboards.md)
   - [Creating Dashboard Widgets](./creating_dashboard_widgets.md)
+- [Access Control & Configurations](./access_control_and_configurations.md)
+  - [Setting up Organisations, Teams and Users](./access_control.md)
+  - [System Variables and GenAI Configurations](./setting_up_other_configurations.md)

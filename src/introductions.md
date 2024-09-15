@@ -96,6 +96,10 @@ Transform raw data into compelling narratives and take direct actions:
 - **API Actions**: Not just observe—**act on your data** by easily adding actions to your insights, integrating seamlessly with other tools.
 - **Automate Workflows**: Trigger processes and automate tasks directly from your data insights.
 
+```admonish note
+  Learn more how to quickly create visualisations and [dashboards](./dashboards.md)
+```
+
 ### Seamless Sharing & Control
 
 Collaborate and manage access with ease:
@@ -104,6 +108,6 @@ Collaborate and manage access with ease:
 - **Organizational Management**: Set up organizations and teams effortlessly, controlling permissions at different levels for access and action capabilities.
 - **Audit Trail**: Monitor how users access and interact with data by creating custom views, ensuring transparency and security.
 
----
-
-With Afterglow, harness the full potential of your data in a platform that's powerful, flexible, and user-friendly. Empower every team in your organization to not only derive insights but also take decisive actions directly from the platform. Dive into the documentation to discover how Afterglow can illuminate and activate your data journey, tailored to the needs of each team.
+```admonish note
+  Learn more to set up Configurations and fine tune your [controls](./access_control_and_configurations.md) 
+```
